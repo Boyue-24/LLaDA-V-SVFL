@@ -1,4 +1,4 @@
-dataset_path: lmms-lab/ChartQA
+dataset_path: /mnt/yrfs/bzh/code/LLaDA-V-SVFL/train/test_data/lmms-lab_ChartQA
 dataset_kwargs:
   token: True
 task: "chartqa"

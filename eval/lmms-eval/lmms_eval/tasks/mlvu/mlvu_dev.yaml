@@ -1,4 +1,4 @@
-dataset_path: sy1998/MLVU_dev
+dataset_path: /mnt/yrfs/bzh/code/LLaDA-V-SVFL/train/test_data/sy1998_MLVU_dev
 dataset_kwargs:
   token: True
   cache_dir: mlvu

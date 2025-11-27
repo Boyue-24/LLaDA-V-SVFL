@@ -1,5 +1,5 @@
 task: "mmmu_pro_vision_cot"
-dataset_path: MMMU/MMMU_Pro
+dataset_path: /mnt/yrfs/bzh/code/LLaDA-V-SVFL/train/test_data/MMMU_MMMU_Pro_vision_multi-choice
 dataset_name: vision
 test_split: test
 output_type: generate_until

@@ -1,4 +1,4 @@
-dataset_path: lmms-lab/MMMU
+dataset_path: /mnt/yrfs/bzh/code/LLaDA-V-SVFL/train/test_data/lmms-lab_MMMU
 task: "mmmu_val"
 test_split: validation
 output_type: generate_until

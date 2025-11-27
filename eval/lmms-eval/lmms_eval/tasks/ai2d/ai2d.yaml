@@ -1,4 +1,4 @@
-dataset_path: lmms-lab/ai2d
+dataset_path: /mnt/yrfs/bzh/code/LLaDA-V-SVFL/train/test_data/lmms-lab_ai2d
 task: "ai2d"
 dataset_kwargs:
   token: True

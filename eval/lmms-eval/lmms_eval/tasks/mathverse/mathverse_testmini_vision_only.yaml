@@ -1,4 +1,4 @@
-dataset_path: CaraJ/MathVerse-lmmseval
+dataset_path: /mnt/yrfs/bzh/code/LLaDA-V/train/test_data/CaraJ_MathVerse-lmmseval_testmini_version_split
 dataset_name: testmini_version_split
 dataset_kwargs:
   token: False

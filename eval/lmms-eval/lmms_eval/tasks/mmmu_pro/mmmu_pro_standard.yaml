@@ -1,5 +1,5 @@
 task: "mmmu_pro_standard"
-dataset_path: MMMU/MMMU_Pro
+dataset_path: /mnt/yrfs/bzh/code/LLaDA-V-SVFL/train/test_data/MMMU_MMMU_Pro_standard_10_options
 dataset_name: "standard (10 options)"
 test_split: test
 output_type: generate_until

@@ -1,0 +1,25 @@
+# LLaDA SlowFast 完整评估配置
+# 包含所有支持的数据集
+# 使用方法: bash eval/scripts/evaluate_slowfast_flexible.sh eval/configs/slowfast_full_eval.yaml
+
+# 注意力模式配置
+attention_mode: standard
+
+# SlowFast 参数配置
+slowfast_dominant_tokens: 20
+slowfast_pooled_tokens: 4
+slowfast_full_layer_interval: 4
+
+# 模型路径
+base_model_path: /mnt/yrfs/bzh/code/LLaDA-V/LLaDA-V-8B
+
+# 评估任务列表（完整版本）
+task_names: mathvista_testmini,mathverse_testmini_vision
+
+# 输出路径基础目录
+output_base: exp/eval_slowfast_flexible_config00
+
+# GPU 配置
+total_gpus: 8
+batch_size: 1
+num_processes: 1

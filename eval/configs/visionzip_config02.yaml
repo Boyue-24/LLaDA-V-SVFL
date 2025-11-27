@@ -1,0 +1,24 @@
+# VisionZip Configuration Example
+# This configuration demonstrates how to use VisionZip with LLaDA-V evaluation
+
+# Base model path
+base_model_path: "/mnt/yrfs/bzh/code/LLaDA-V/LLaDA-V-8B"
+
+# Attention mode (set to "standard" when using VisionZip)
+attention_mode: "standard"
+
+# VisionZip settings
+use_visionzip: true
+visionzip_dominant: 162
+visionzip_contextual: 30
+
+# Tasks to evaluate
+task_names: mmmu_val,mmmu_pro_standard,mmstar,ai2d,seedbench,mmbench_en_dev,mmmu_pro_vision,muirbench,videomme,mlvu_dev,mme,realworldqa,chartqa,docvqa_val,infovqa_val
+
+# Output directory
+output_base: "exp/eval_visionzip_config02"
+
+# Batch size and parallelism
+batch_size: 1
+num_processes: 1
+total_gpus: 8

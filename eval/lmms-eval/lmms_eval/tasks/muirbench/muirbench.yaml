@@ -1,4 +1,4 @@
-dataset_path: MUIRBENCH/MUIRBENCH
+dataset_path: /mnt/yrfs/bzh/code/LLaDA-V-SVFL/train/test_data/MUIRBENCH_MUIRBENCH
 task: "muirbench"
 dataset_kwargs:
   token: True

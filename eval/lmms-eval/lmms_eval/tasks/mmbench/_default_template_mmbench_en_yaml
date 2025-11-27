@@ -1,4 +1,4 @@
-dataset_path: lmms-lab/MMBench
+dataset_path: /mnt/yrfs/bzh/code/LLaDA-V-SVFL/train/test_data/lmms-lab_MMBench_en
 dataset_kwargs:
   token: True
 doc_to_target: "answer"

@@ -1,4 +1,4 @@
-dataset_path: lmms-lab/MME/data
+dataset_path: /mnt/yrfs/bzh/code/LLaDA-V-SVFL/train/test_data/lmms-lab_MME
 dataset_kwargs:
   token: True
 task: "mme"

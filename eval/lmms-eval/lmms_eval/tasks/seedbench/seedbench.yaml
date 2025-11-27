@@ -1,4 +1,4 @@
-dataset_path: lmms-lab/SEED-Bench
+dataset_path: /mnt/yrfs/bzh/code/LLaDA-V-SVFL/train/test_data/lmms-lab_SEED-Bench
 dataset_kwargs:
   token: True
 task: "seedbench"

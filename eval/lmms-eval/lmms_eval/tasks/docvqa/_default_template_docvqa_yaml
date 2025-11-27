@@ -1,4 +1,4 @@
-dataset_path: lmms-lab/DocVQA
+dataset_path: /mnt/yrfs/bzh/code/LLaDA-V-SVFL/train/test_data/lmms-lab_DocVQA_DocVQA
 dataset_name: DocVQA
 dataset_kwargs:
   token: True

@@ -94,14 +94,26 @@ class MathVerseEvaluator:
         self.gpt_model = gpt_model
         self.quick_extract = quick_extract
 
-    def _post_request(self, payload):
+    def _post_request(self, payload, max_retries=3):
         headers = {
             "Authorization": f"Bearer {self.api_key}",
             "Content-Type": "application/json",
         }
-        response = requests.post(self.API_URL, headers=headers, json=payload, timeout=30)
-        response.raise_for_status()
-        return response.json()
+        
+        for attempt in range(max_retries):
+            try:
+                response = requests.post(self.API_URL, headers=headers, json=payload, timeout=60)
+                response.raise_for_status()
+                return response.json()
+            except (requests.exceptions.ConnectionError, 
+                    requests.exceptions.Timeout,
+                    ConnectionResetError) as e:
+                if attempt == max_retries - 1:
+                    raise e
+                eval_logger.warning(f"Connection error on attempt {attempt + 1}/{max_retries}: {e}")
+                time.sleep(2 ** attempt)  # 指数退避: 1s, 2s, 4s
+            except requests.exceptions.RequestException as e:
+                raise e
 
     def get_chat_response(self, prompt, temperature=0, max_tokens=256, n=1, patience=10000000, sleep_time=0):
         messages = [
@@ -133,6 +145,15 @@ class MathVerseEvaluator:
                     print(str(e))
                     print("Continue with empty answer")
                     return "0"
+
+                # Handle connection errors specifically
+                if any(error_type in str(e).lower() for error_type in [
+                    "connection", "reset", "timeout", "network", "aborted"
+                ]):
+                    eval_logger.warning(f"Connection issue detected: {e}")
+                    if sleep_time > 0:
+                        time.sleep(sleep_time)
+                    continue
 
                 if "Rate limit" not in str(e):
                     eval_logger.error(e)
@@ -175,7 +196,7 @@ class MathVerseEvaluator:
         # general extraction
         try:
             full_prompt = self.create_extract_prompt(DEMO_PROMPT_EXTRACT, response)
-            extraction = self.get_chat_response(full_prompt, temperature=0, max_tokens=256, n=1)
+            extraction = self.get_chat_response(full_prompt, temperature=0, max_tokens=256, n=1, sleep_time=2)
             return extraction
         except Exception as e:
             eval_logger.error(e)
@@ -190,7 +211,7 @@ class MathVerseEvaluator:
         try:
             full_prompt = self.create_match_prompt(DEMO_PROMPT_SCORE, question, answer, extraction)
             while True:
-                extraction = self.get_chat_response(full_prompt, temperature=0, max_tokens=8, n=1)
+                extraction = self.get_chat_response(full_prompt, temperature=0, max_tokens=8, n=1, sleep_time=2)
                 judgement = extraction.replace("Judgement:", "").strip()
                 if judgement.strip() in ["0", "1"]:
                     return int(judgement) == 1
